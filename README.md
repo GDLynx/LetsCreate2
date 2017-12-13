@@ -1,7 +1,4 @@
-# Read Me (Lets Create) 
-
-## Game URL: 
-
+# Read Me
 
 ## Notes  
 * Question: should I make my canvas element responsive and scale to mobile and if so,  will the canvas's images be affected?
