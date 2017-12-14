@@ -3,13 +3,13 @@
 (it may be only one instance of the present should exist at a time )
 */
 
-var startX = 200, startY = 200;
+// var startX = 200, startY = 200;
 function Present() {
     this.velocity = {
         x:0, y:0
     };
     this.position = {
-        x: startX, y: startY
+        x: 200, y: 200
     };
     this.width = 30;
     this.height = 30;
@@ -31,5 +31,5 @@ function Present() {
     image.src = "./images/present.png";
     this.display = function() {
         ctx.drawImage(image, this.position.x, this.position.y, this.width, this.height);
-    } 
+    }
 }
