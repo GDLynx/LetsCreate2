@@ -9,7 +9,8 @@ function Present() {
         x:0, y:0
     };
     this.position = {
-        x: 200, y: 200
+        // x: 200, y: 200
+        x: 600 + Math.random() * 100, y: 300 + Math.random() * 100  
     };
     this.width = 30;
     this.height = 30;
