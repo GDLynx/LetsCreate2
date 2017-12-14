@@ -19,7 +19,7 @@ function House(startX, startY) {
         //this.position.x -= this.speed;
         this.width += 1/3;
         this.height = this.width;
-        console.log("moving" + this.position.y);
+        //console.log("moving" + this.position.y);
         if (this.position.x <= 200) { // canvasWidth/2
             this.position.x += this.speed;
         } else {

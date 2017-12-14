@@ -5,13 +5,13 @@
 
 // var startX = 200, startY = 200;
 function Present() {
-    console.log("present"); 
+    console.log("Present"); 
     this.velocity = {
         x:0, y:0
     };
     this.position = {
         // x: 200, y: 200
-        x: 0 + Math.random() * 300, y: 300 + Math.random() * 100  
+        x: 10 + Math.floor(Math.random() * 300), y: 300 + Math.random() * 100
     };
     this.width = 30;
     this.height = 30;
