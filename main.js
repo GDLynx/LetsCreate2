@@ -9,7 +9,7 @@ var canvasWidth = canvas.width, canvasHeight = canvas.height;
 
 /// Initiallize objects (in global scope)
 var present = [];
-var house;
+var house = [];
 
 /// Ensure the correct request is made for Animation Frame
 if (!window.requestAnimationFrame) {
@@ -36,21 +36,44 @@ function init() {
 
     /// Create Object Instances (unsure if this should be here or in "update")
     present = new Present();
+    // house.push(new House(90, 500)); // house = new House(500, 100);
 
     /// Begin Game
     update();
 }
 
+var increments = 0;
 function update() {
-
+    increments += 1;
+    if (increments >= 100) {
+        increments = 0;
+        if (Math.floor(Math.random() * 10) > 5) {
+            house.push(new House(600, 40));
+        } else {
+            house.push(new House(0, 40)); // house = new House(500, 100);
+        } 
+    }
     /// Move / Update / Trigger Behavior for Object/s
     present.move();
+
+    //instancePerformBehavior(house, house.move);
+    for (var h = 0; h < house.length; h++) {
+        house[h].move();
+    }
 
     /// Clear canvas + draw (to an empty canvas)
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
     present.display();
+    //instancePerformBehavior(house, house.display);
+    for (var h = 0; h < house.length; h++) {
+        house[h].display();
+    }
+    // instancePerformBehavior(house, house.display);
+    // instanceBehave(house, "display");
 
-    /// Colision/s 
+    /// Colision/s
+
+    houseLeavesScreen();
 
     /// Game Loop
     requestAnimationFrame(update);
@@ -58,3 +81,28 @@ function update() {
 
 /// Run Initiallization function which will begin the game
 init();
+
+/*
+function instanceBehave(objArray, functionName) {
+    for (var i = 0; i < objArray.length; i++) {
+        console.log("InstanceBehave called");
+        const func = objArray[i][functionName];
+        func();
+    }
+}
+
+/*
+function instancePerformBehavior(object, behavior) {
+    for (var i = 0; i < object.length; i++) {
+        object[i].behavior(); // object.behavior();
+        console.log("Instance: " + object[i] + " Behavior " + behavior );
+    }
+}
+/*
+function instancePerformBehavior(object, instanceAndBehavior) {
+    for (var i = 0; i < object.length; i++) {
+        instanceAndBehavior; // object.behavior();
+        console.log("Instance: " + object + " Behavior " + instanceAndBehavior);
+    }
+}
+*/
