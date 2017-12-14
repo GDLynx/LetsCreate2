@@ -5,6 +5,7 @@
 
 // var startX = 200, startY = 200;
 function Present() {
+    console.log("present"); 
     this.velocity = {
         x:0, y:0
     };
