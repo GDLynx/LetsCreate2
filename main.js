@@ -25,10 +25,19 @@ if (!window.requestAnimationFrame) {
         }
     })();
 }
+var onMobile;
 
 function init() {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        //alert("Mobile");
+        onMobile = true;
+    } else {
+        //alert("Desktop");
+        onMobile = false;
+    }
+
     /// Check the device's orientation is accessible
-    if (window.DeviceOrientationEvent) {
+    if (window.DeviceOrientationEvent && onMobile) {
         window.addEventListener("deviceorientation", function(event)
         {
             /// Get Device Orientation (for Fish)
@@ -37,6 +46,16 @@ function init() {
             }
         })
     };
+
+    if (!onMobile) {
+        window.addEventListener("mousemove", function(e) {
+            for (var p = 0; p < present.length; p++) {
+                // present[p].desktopInput(e);
+                present[p].position.y = e.clientY;
+                present[p].position.x = e.clientX;
+            }
+        });
+    }
 
     /// Create Object Instances (unsure if this should be here or in "update")
     controller = new Controller();
