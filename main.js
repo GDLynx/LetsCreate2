@@ -54,8 +54,8 @@ reindeerImageInstance = new Image();
 var increments = 0;
 var increments2 = 0;
 function update() {
-    if (snow.length < 105) {
-        snow.push(new Snow());
+    snow.push(new Snow());
+    if (snow.length < 300) {
     }
     increments += 1;
     increments2 += 1;
@@ -90,9 +90,9 @@ function update() {
     }
     for (var s = 0; s < snow.length; s++) {
         snow[s].display();
-    }
-    if (snow.y > canvasHeight) {
-        snow.slice(0, 1);
+        if (snow[s].y > canvasHeight) {
+            snow.slice(0, 1);
+        }
     }
     controller.display();
     //instancePerformBehavior(house, house.display);
