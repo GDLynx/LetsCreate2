@@ -9,9 +9,9 @@ function House(startX, startY) {
     this.position = {
         x: startX, y: startY
     };
-    this.width = 50/2;
-    this.height = 50/2;
-    this.speed = 0.2; // 2;
+    this.width = 100;
+    this.height = 100;
+    this.speed = 2.4; // 0.2; // 2;
 
     // console.log(this.position.x + " " + this.position.y + " " + startX + " " + startY);
     /// Move Object
@@ -84,7 +84,7 @@ function houseLeavesScreen() {
     for (var h = 0; h < house.length; h++) {
         if (house[h].position.y >= 150) { // canvasHeight - house[h].height) {  // canvasHeight - house.height) {
             house.splice(0, 1);
-            console.log("Deleted");
+            //console.log("Deleted");
         }
     }
 }

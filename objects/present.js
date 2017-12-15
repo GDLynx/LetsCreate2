@@ -5,7 +5,7 @@
 
 // var startX = 200, startY = 200;
 function Present() {
-    this.presentType = "";
+    this.presentType = "regular";
     this.velocity = {
         x:0, y:0
     };
@@ -31,12 +31,15 @@ function Present() {
 
     /// Display
     var image = new Image();
-    if (this.presentType == "explosive") {
-        image.src = "./images/explodingPresent.png";
-    } else {
-        image.src = "./images/present.png";
-    }
     this.display = function() {
+        //console.log("Display ");
+        if (this.presentType === "explosive") {
+            image.src = "./images/explodingPresent.png";
+            //console.log("Exploding");
+        } else {
+            image.src = "./images/present.png";
+            //console.log("reg");
+        }
         ctx.drawImage(image, this.position.x, this.position.y, this.width, this.height);
     }
 }
