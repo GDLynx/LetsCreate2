@@ -4,8 +4,8 @@
 */
 
 // var startX = 200, startY = 200;
-function Present() {
-    this.presentType = "";
+function ExplodingPresent() { // parameter1 = increments % 3 === 2  
+    console.log("Exploding Present");
     this.velocity = {
         x:0, y:0
     };

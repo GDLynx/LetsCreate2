@@ -4,6 +4,7 @@
 var startX = 10; // Math.floor(Math.random() * 1000);
 var startY = 100;
 */
+
 function House(startX, startY) {
     this.position = {
         x: startX, y: startY
@@ -42,7 +43,7 @@ function House(startX, startY) {
         } else {
             // this.position.x + this.width-20, this.position.y + 4
             if (this.position.x < other.position.x + other.width &&
-                    this.position.x + this.width-40 > other.position.x &&
+                    this.position.x + this.width > other.position.x &&
                     this.position.y < other.position.y + other.height &&
                     this.height - 160 + this.position.y > other.position.y) {
                 // alert("Collected");
@@ -61,11 +62,11 @@ function House(startX, startY) {
     }
     this.display = function() {
         if (this.position.x <= 120) {
+            ctx.fillStyle = "green";
             ctx.fillRect(this.position.x + this.width-20, this.position.y + 4, 20, 20);
-            ctx.fillStyle = "green";
         } else {
-            ctx.fillRect(this.position.x, this.position.y + 4, 20, 20);
             ctx.fillStyle = "green";
+            ctx.fillRect(this.position.x, this.position.y + 4, 20, 20);
         }
         ctx.drawImage(image, this.position.x, this.position.y, this.width, this.height);
         ctx.globalCompositeOperation="destination-over";
@@ -87,3 +88,30 @@ function houseLeavesScreen() {
         }
     }
 }
+
+/*
+/// Collision with present
+this.intersects = function(other) {
+    if (this.position.x >= 120) {
+        // this.position.x + this.width-20, this.position.y + 4
+        if (this.position.x+10 < other.position.x + other.width &&
+                this.position.x + this.width > other.position.x &&
+                this.position.y < other.position.y + other.height &&
+                this.height + this.position.y > other.position.y) {
+            // alert("Collected");
+            console.log("Collision");
+            return true;
+        }
+    } else {
+        // this.position.x + this.width-20, this.position.y + 4
+        if (this.position.x < other.position.x + other.width &&
+                this.position.x + this.width-40 > other.position.x &&
+                this.position.y < other.position.y + other.height &&
+                this.height - 160 + this.position.y > other.position.y) {
+            // alert("Collected");
+            console.log("Collision");
+            return true;
+        }
+    }
+}
+*/
