@@ -22,6 +22,10 @@ function Present() {
             this.velocity.y = Math.round(event.beta) * 2;
             this.velocity.x = Math.round(event.gamma) * 2;
     }
+    this.desktopInput = function() {
+        this.velocity.y = e.clientY;
+        this.velocity.x = e.clientX;
+    }
 
     /// Move Object
     this.move = function() { // should collision / intersection checking occur here?
