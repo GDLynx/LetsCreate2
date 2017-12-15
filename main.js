@@ -8,8 +8,9 @@ canvas.style.cssText = "background-color:white;border:2px solid black;";
 var canvasWidth = canvas.width, canvasHeight = canvas.height;
 
 /// Initiallize objects (in global scope)
-var present = [];
+var controller;
 var house = [];
+var present = [];
 
 /// Ensure the correct request is made for Animation Frame
 if (!window.requestAnimationFrame) {
@@ -37,7 +38,9 @@ function init() {
     };
 
     /// Create Object Instances (unsure if this should be here or in "update")
+    controller = new Controller();
     // present = new Present();
+    house.push(new House(0, 40));
     present.push(new Present());
     // house.push(new House(90, 500)); // house = new House(500, 100);
 
@@ -48,7 +51,7 @@ function init() {
 var increments = 0;
 function update() {
     increments += 1;
-    if (increments >= 100) {
+    if (increments >= 100 && house.length < 1) {
         increments = 0;
         if (Math.floor(Math.random() * 10) > 5) {
             house.push(new House(600, 40));
@@ -68,6 +71,7 @@ function update() {
 
     /// Clear canvas + draw (to an empty canvas)
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    controller.display();
     for (var p = 0; p < present.length; p++) {
         present[p].display();
     }
@@ -82,12 +86,28 @@ function update() {
     for (var h = 0; h < house.length; h++) {
         for (var p = 0; p < present.length; p++) {
             if (house[h].intersects(present[p])) {
+                // alert("X: " + present[p].position.x + "Y: " + present[p].position.y);
+                if (present[p].type == "explosive") {
+                    controller.score += 1;
+                } else {
+                    controller.score -= 1;
+                }
                 newPresent();
             }
         }
      }
 
     houseLeavesScreen();
+
+    /// Destroy explosive present after X (6) seconds - should be 6 though is currently 3 
+    for (var p = 0; p < present.length; p++) {
+        if (present[p].type == "explosive") {
+            if (increments % 3 === 2) {
+                console.log(increments % 3); // for testing
+                newPresent();
+            }
+        }
+    }
 
     /// Game Loop
     requestAnimationFrame(update);
@@ -96,12 +116,25 @@ function update() {
 /// Run Initiallization function which will begin the game
 init();
 
+// var t = 0;
 function newPresent() {
+//    console.log(_t);
+    var presentType = Math.floor(Math.random() * 4); // 1 = present 2 = explodingPresent
+    console.log(presentType);
     for (var p = 0; p < present.length; p++) {
         present.splice(0, 1);
-        present.push(new Present());
+
+            console.log("New present");
+            present.push(new Present());
+            if (presentType < 2) {
+                present[p].type = "regular";
+            } else {
+                present[p].type = "explosive";
+            }
+            console.log(present[p].type);
     }
 }
+
 /*
 function instanceBehave(objArray, functionName) {
     for (var i = 0; i < objArray.length; i++) {
