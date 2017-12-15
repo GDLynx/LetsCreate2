@@ -10,8 +10,8 @@ function Present() {
         x:0, y:0
     };
     this.position = {
-        x: 100, y: 100// x: 280, y: 160
-        // x: canvasWidth/2, y: 350
+        // x: 100, y: 100// x: 280, y: 160
+        x: canvasWidth/2, y: 350
         // x: 10 + Math.floor(Math.random() * 300), y: 300 + Math.random() * 100
     };
     this.width = 30;
@@ -31,7 +31,11 @@ function Present() {
 
     /// Display
     var image = new Image();
-    image.src = "./images/present.png";
+    if (this.presentType == "explosive") {
+        image.src = "./images/explodingPresent.png";
+    } else {
+        image.src = "./images/present.png";
+    }
     this.display = function() {
         ctx.drawImage(image, this.position.x, this.position.y, this.width, this.height);
     }
