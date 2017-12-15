@@ -21,9 +21,9 @@ function House(startX, startY) {
         this.width += 1/3;
         this.height = this.width;
         //console.log("moving" + this.position.y);
-        if (this.position.x <= 200) { // canvasWidth/2
+        if (this.position.x <= 200 && this.position.y <= 120) {
             this.position.x += this.speed;
-        } else {
+        } else if (this.position.x >= 200 && this.position.y <= 120) {
             this.position.x -= this.speed * 2;
         }
     }
@@ -37,17 +37,17 @@ function House(startX, startY) {
                     this.position.y < other.position.y + other.height &&
                     this.height + this.position.y > other.position.y) {
                 // alert("Collected");
-                console.log("Collision");
+                //console.log("Collision");
                 return true;
             }
-        } else {
+        } else if (this.position.x <= 120) {
             // this.position.x + this.width-20, this.position.y + 4
             if (this.position.x < other.position.x + other.width &&
                     this.position.x + this.width > other.position.x &&
                     this.position.y < other.position.y + other.height &&
-                    this.height - 160 + this.position.y > other.position.y) {
+                    this.height + this.position.y > other.position.y) {
                 // alert("Collected");
-                console.log("Collision");
+                // console.log("Collision");
                 return true;
             }
         }
@@ -61,7 +61,7 @@ function House(startX, startY) {
         image.src = "./images/house2.png";
     }
     this.display = function() {
-        if (this.position.x <= 120) {
+        if (this.position.x <= 120) { // 120
             ctx.fillStyle = "green";
             ctx.fillRect(this.position.x + this.width-20, this.position.y + 4, 20, 20);
         } else {
@@ -82,7 +82,7 @@ function House(startX, startY) {
 
 function houseLeavesScreen() {
     for (var h = 0; h < house.length; h++) {
-        if (house[h].position.y >= 150) { // canvasHeight - house[h].height) {  // canvasHeight - house.height) {
+        if (house[h].position.y >= 200) { // 150 canvasHeight - house[h].height) {  // canvasHeight - house.height) {
             house.splice(0, 1);
             //console.log("Deleted");
         }
