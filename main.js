@@ -87,7 +87,7 @@ function update() {
         for (var p = 0; p < present.length; p++) {
             if (house[h].intersects(present[p])) {
                 // alert("X: " + present[p].position.x + "Y: " + present[p].position.y);
-                if (present[p].type == "explosive") {
+                if (present[p].presentType == "explosive") {
                     controller.score += 1;
                 } else {
                     controller.score -= 1;
@@ -99,9 +99,9 @@ function update() {
 
     houseLeavesScreen();
 
-    /// Destroy explosive present after X (6) seconds - should be 6 though is currently 3 
+    /// Destroy explosive present after X (6) seconds - should be 6 though is currently 3
     for (var p = 0; p < present.length; p++) {
-        if (present[p].type == "explosive") {
+        if (present[p].presentType == "explosive") {
             if (increments % 3 === 2) {
                 console.log(increments % 3); // for testing
                 newPresent();
@@ -127,11 +127,11 @@ function newPresent() {
             console.log("New present");
             present.push(new Present());
             if (presentType < 2) {
-                present[p].type = "regular";
+                present[p].presentType = "regular";
             } else {
-                present[p].type = "explosive";
+                present[p].presentType = "explosive";
             }
-            console.log(present[p].type);
+            console.log(present[p].presentType);
     }
 }
 
