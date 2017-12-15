@@ -31,9 +31,11 @@ function init() {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         //alert("Mobile");
         onMobile = true;
+        alert("Use your device by tilting it (in any direction) to control the present (white square) and attempt to land it down the chimneys"); 
     } else {
         //alert("Desktop");
         onMobile = false;
+        alert("Use your mouse to control the present (white square) and attempt to land it down the chimneys");
     }
 
     /// Check the device's orientation is accessible
@@ -73,12 +75,12 @@ reindeerImageInstance = new Image();
 var increments = 0;
 var increments2 = 0;
 function update() {
-    snow.push(new Snow());
-    if (snow.length < 300) {
+    if (snow.length < 400) {
+        snow.push(new Snow());
     }
     increments += 1;
     increments2 += 1;
-    if (increments >= 100 && house.length < 1) {
+    if (increments >= 30 && house.length < 1) {
         increments = 0;
         if (Math.floor(Math.random() * 10) > 5) {
             house.push(new House(600, 40));
@@ -109,8 +111,10 @@ function update() {
     }
     for (var s = 0; s < snow.length; s++) {
         snow[s].display();
-        if (snow[s].y > canvasHeight) {
-            snow.slice(0, 1);
+        if (snow[s].y > canvasHeight - 50) {
+            snow[s].y = 0;
+            snow[s].x = Math.random() * canvasWidth;
+            //snow.slice(0, 1);
         }
     }
     controller.display();
@@ -207,7 +211,7 @@ function reindeerAndSleigh(imageSrc) {
     ctx.globalCompositeOperation="destination-over";
 }
 function Snow() {
-    this.x = Math.random() * 1300;
+    this.x = Math.random() * canvasWidth;
     this.y = 0;
 
     this.display = function() {
