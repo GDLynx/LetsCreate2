@@ -31,7 +31,7 @@ function init() {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         //alert("Mobile");
         onMobile = true;
-        alert("Use your device by tilting it (in any direction) to control the present (white square) and attempt to land it down the chimneys"); 
+        alert("Use your device by tilting it (in any direction) to control the present (white square) and attempt to land it down the chimneys");
     } else {
         //alert("Desktop");
         onMobile = false;
@@ -79,7 +79,7 @@ function update() {
         snow.push(new Snow());
     }
     increments += 1;
-    increments2 += 1;
+    increments2 += 1; 
     if (increments >= 30 && house.length < 1) {
         increments = 0;
         if (Math.floor(Math.random() * 10) > 5) {
