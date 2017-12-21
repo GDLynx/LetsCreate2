@@ -224,7 +224,6 @@ function Snow() {
     }
 }
 function displayGround() {
-    console.log("Ground");
     ctx.beginPath();
     ctx.fillStyle = "white";
     ctx.fillRect(0, 60, canvasWidth, canvasHeight);
